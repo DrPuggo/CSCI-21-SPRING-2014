@@ -5,7 +5,12 @@
 # Programmer: Jacob Slaton
 #
 
-all: pc1 pc2 pc3 pc4
+all: project1 pc1 pc2 pc3 pc4
+
+# Target for project 1
+# Date completed: 2-5-2014
+project1: project1.cpp
+	g++ -o project1 project1.cpp
 
 # Target for programming challenge 1
 # Date completed: 1-29-2014
