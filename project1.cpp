@@ -4,7 +4,7 @@
  * 
  * Jacob Slaton
  * Date Created: Feb 5, 2014
- * Last Date Modified: Feb 5, 2014
+ * Last Date Modified: Feb 10, 2014
  *
  * <sources_go_here>
  */
@@ -14,25 +14,6 @@
 #include <string>
 using namespace std;
 
-void countCharacters (string theString, int& alpha, int& num);
-string upAndDown (string theString);
-int countWords (string theString);
-int computeAverage (int values [], int arraySize);
-int findMinValue (int values [], int arraySize);
-int findMaxValue (int values [], int arraySize);
-
-/* for unit testing -- do not alter */
-template <typename X, typename A>
-void btassert(A assertion);
-void unittest ();
-
-int main (int argc, char* argv[])
-{
-	unittest();
-	
-	return 0;
-}
-
 /*
  * Looks through theString and keeps track of the number of
  * alphabetic characers and numeric characters separately.
@@ -40,36 +21,70 @@ int main (int argc, char* argv[])
  * @param alpha the number of alphabetic characters is stored in here
  * @param num the number of numeric characters is stored in here
  */
+void countCharacters (string theString, int& alpha, int& num);
+
+/*
+ * Alternates the casing of theString, making the first letter uppercase.
+ * @param theString copy of the string to be changed
+ * @return the final string with the casing alternated
+ */
+string upAndDown (string theString);
+
+int countWords (string theString);
+
+int computeAverage (int values [], int arraySize);
+
+int findMinValue (int values [], int arraySize);
+
+int findMaxValue (int values [], int arraySize);
+
+/* for unit testing -- do not alter */
+template <typename X, typename A>
+void btassert(A assertion);
+void unittest ();
+
+int main ()
+{
+	unittest();
+	
+	return 0;
+}
+
 void countCharacters(string theString, int& alpha, int& num)
 {
+    alpha = 0;
+    num = 0;
     for (unsigned int i = 0; i < theString.length(); i++)
-    {
         if (isalpha(theString[i]))
             alpha++;
-        if (isdigit(theString[i]))
+        else if (isdigit(theString[i]))
             num++;
-    }
 }
 
 string upAndDown (string theString)
 {
-    return "";
+    for (unsigned int i = 0; i < theString.length(); i++)
+        if ((i % 2) == 0)
+            theString[i] = toupper(theString[i]);
+        else
+            theString[i] = tolower(theString[i]);
+    return theString;
 }
 int countWords (string theString)
 {
-    return 0;
+    return theString.length();
 }
 int computeAverage (int values [], int arraySize)
 {
-    return 0;
+    return values[arraySize];
 }
 int findMinValue (int values [], int arraySize)
 {
-    return 0;
+    return values[arraySize];
 }
 int findMaxValue (int values [], int arraySize)
 {
-    return 0;
+    return values[arraySize];
 }
 
 /*
