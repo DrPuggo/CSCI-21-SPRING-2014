@@ -42,6 +42,6 @@ pc5: pc5.cpp
 	g++ $(FLAGS) pc5.cpp -o pc5.exe
 
 # Target for programming challenge 6
-# Date completed: 2-10-2014
+# Date completed: 2-12-2014
 pc6: pc6.cpp
 	g++ $(FLAGS) pc6.cpp -o pc6.exe
