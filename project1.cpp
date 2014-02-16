@@ -30,12 +30,36 @@ void countCharacters (string theString, int& alpha, int& num);
  */
 string upAndDown (string theString);
 
+/*
+ * Counts the number of words in theString. It is assumed that theString does 
+ * not start or end in a space, or have spaces back to back.
+ * @param theString the string to be anaylzed
+ * @return the number of words in the string
+ */
 int countWords (string theString);
 
+/*
+ * Averages the content of values.
+ * @param values the array to average
+ * @param arraySize the size of values
+ * @return the computed average
+ */
 int computeAverage (int values [], int arraySize);
 
+/*
+ * Searches through the given array to find the smallest value.
+ * @param values the array to search
+ * @param arraySize the size of values
+ * @return the smallest value in the array
+ */
 int findMinValue (int values [], int arraySize);
 
+/*
+ * Searches through the given array to find the largest value.
+ * @param values the array to search
+ * @param arraySize the size of values
+ * @return the largest value in the array
+ */
 int findMaxValue (int values [], int arraySize);
 
 /* for unit testing -- do not alter */
@@ -72,19 +96,36 @@ string upAndDown (string theString)
 }
 int countWords (string theString)
 {
-    return theString.length();
+    if (theString == "")
+        return 0;
+    unsigned int words = 1;
+    for (unsigned int i = 1; i < theString.length(); i++)
+        if (isspace(theString[i]))
+            words++;
+    return words;
 }
 int computeAverage (int values [], int arraySize)
 {
-    return values[arraySize];
+    double sum = 0.0;
+    for (int i = 0; i < arraySize; i++)
+        sum += values[i];
+    return sum / arraySize;
 }
 int findMinValue (int values [], int arraySize)
 {
-    return values[arraySize];
+    int smallest = values[0];
+    for (int i = 1; i < arraySize; i++)
+        if (smallest > values[i])
+            smallest = values[i];
+    return smallest;
 }
 int findMaxValue (int values [], int arraySize)
 {
-    return values[arraySize];
+    int largest = values[0];
+    for (int i = 1; i < arraySize; i++)
+        if (largest < values[i])
+            largest = values[i];
+    return largest;
 }
 
 /*
