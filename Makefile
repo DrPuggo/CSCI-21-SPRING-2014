@@ -59,6 +59,11 @@ pc7: pc7.cpp
 	g++ $(FLAGS) pc7.cpp -o pc7
 
 # Target for programming challenge 8
-# Date completed: 2-19-2014
+# Date completed: 2-24-2014
 pc8: pc8.cpp
 	g++ $(FLAGS) pc8.cpp -o pc8
+
+# Target for programming challenge 9
+# Date completed: 2-26-2014
+pc9: pc9.cpp
+	g++ $(FLAGS) pc9.cpp -o pc9
