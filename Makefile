@@ -7,9 +7,9 @@
 
 FLAGS = -Wall -Wextra -Werror -pedantic
 
-all: project1 pc1 pc2 pc3 pc4 pc5 pc6 pc7 pc8
+all: project1 pc1 pc2 pc3 pc4 pc5 pc6 pc7 pc8 pc9 pc10
 
-pc: pc1 pc2 pc3 pc4 pc5 pc6 pc7 pc8
+pc: pc1 pc2 pc3 pc4 pc5 pc6 pc7 pc8 pc9 pc10
 
 # Target for project 1
 # Date completed: 2-5-2014
@@ -60,3 +60,9 @@ pc8: pc8.cpp
 # Date completed: 2-26-2014
 pc9: pc9.cpp
 	g++ $(FLAGS) pc9.cpp -o pc9
+
+# Target for programming challenge 10
+# Date completed: 3-3-2014
+pc10: pc10.cpp
+	g++ $(FLAGS) pc10.cpp -o pc10
+
