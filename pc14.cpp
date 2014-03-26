@@ -83,6 +83,7 @@ void bubbleSort(int theArray[], unsigned int size)
 }
 void selectionSort(int theArray[], unsigned int size)
 {
+    /*
     for (unsigned int i = 0; i < (size - 1); i++)
     {
         unsigned int indexOfMin = i;
@@ -97,6 +98,20 @@ void selectionSort(int theArray[], unsigned int size)
         {
             swapValues(theArray, indexOfMin, i);
         }
+    }
+    */
+    
+    for (unsigned int i = 0; i < size; ++i)
+    {
+        unsigned int indexOfMin = i;
+        for (unsigned int j = i + 1; j < size; ++j)
+        {
+            if (theArray[j] < theArray[indexOfMin])
+            {
+                indexOfMin = j;
+            }
+        }
+        swapValues(theArray, i, indexOfMin);
     }
 }
 void swapValues (int values[], int index1, int index2)
