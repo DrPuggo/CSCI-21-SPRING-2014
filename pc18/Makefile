@@ -5,7 +5,7 @@
 # Programmer: Jacob Slaton
 #
 
-FLAGS = -Wall -Wextra -Werror -pedantic
+FLAGS = -Wall -Wextra -Werror -pedantic -Wno-newline-eof
 
 # Target for project 18
 # Date completed: 4-9-2014
