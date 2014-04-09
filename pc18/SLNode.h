@@ -46,4 +46,6 @@ public:
      * @return mNextNode
      */
     SLNode* getNextNode();
+protected:
+private:
 };
