@@ -12,7 +12,7 @@ class BSTree
         unsigned int mSize;
     public:
         BSTree();
-        ~BSTree();
+        virtual ~BSTree();
         bool insert(int data);
         void clear();
         unsigned int getSize() const;
