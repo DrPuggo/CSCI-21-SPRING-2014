@@ -14,6 +14,16 @@
 #include "DLNode.h"
 using std::ostream;
 
+//
+// Grader comments 2014.05.14
+// Ignore this stuff; I added it just to get the unit test
+// to compile. Also added const to all your get... functions
+// for the same reason.
+//
+#define head mHead
+#define tail mTail
+#define size mNodeCount
+
 class DLList
 {
 	unsigned int mNodeCount;
@@ -57,7 +67,7 @@ public:
 	
 	int getFront() const;
 	int getBack() const;
-	bool get(int target);
+	bool get(int target) const;
 	void popFront();
 	void popBack();
 	bool removeFirst(int target);

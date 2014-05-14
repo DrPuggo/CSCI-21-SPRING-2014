@@ -1,3 +1,8 @@
+//
+// Grader comments 2014.05.13
+// -75 points total
+//
+
 /*
  * DLList.cpp
  * <description_here>
@@ -25,22 +30,44 @@ unsigned int DLList::getSize() const
 	return mNodeCount;
 }
 
+//
+// Grader comments 2014.05.14
+// Previous link never set when inserting new node. Causes
+// intermittent crashing.
+// -10 points
+//
 void DLList::pushFront(int contents)
 {
     DLNode* temp = new DLNode(contents);
     temp->setNext(mHead);
 	if (mTail == NULL)
 		mTail = temp;
+	
+	if(mHead != NULL) {	// Rob
+		mHead->setPrevious(temp);
+	}
     mHead = temp;
     ++mNodeCount;
 }
 
+//
+// Grader comments 2014.05.14
+// Points new node in the wrong direction.
+// Doesn't point the old tail to the new tail.
+// -15 points
+//
 void DLList::pushBack(int contents)
 {
     DLNode* temp = new DLNode(contents);
-    temp->setPrevious(mHead);
+    //temp->setPrevious(mHead);				// Rob
+	temp->setPrevious(mTail);				// Rob
 	if (mHead == NULL)
 		mHead = temp;
+	
+	if(mTail != NULL) {						// Rob
+		mTail->setNext(temp);
+	}
+	
     mTail = temp;
     ++mNodeCount;
 }
@@ -91,12 +118,17 @@ int DLList::getBack() const
 	return mTail->getContents();
 }
 
-bool DLList::get(int target)
+//
+// Grader comments 2014.05.14
+// Misses the last item on the list.
+// -5 points
+bool DLList::get(int target) const
 {
 	if (mHead == NULL)
 		return false;
 	DLNode* temp = mHead;
-	while ((temp != NULL) && (temp->getNext()))
+	//while ((temp != NULL) && (temp->getNext()))	// Rob
+	while(temp != NULL)								// Rob
 	{
 		if (temp->getContents() == target)
 			return true;
@@ -105,6 +137,13 @@ bool DLList::get(int target)
 	return false;
 }
 
+//
+// Grader comments 2014.05.14
+// Attempts to set previous link even when there is no more list.
+// Doesn't manage node count.
+// Doesn't always manage tail when necessary.
+// -15 points
+//
 void DLList::popFront()
 {
 	if (mHead == NULL)
@@ -113,10 +152,26 @@ void DLList::popFront()
 	if (mTail == mHead)
 		mTail = NULL;
 	mHead = mHead->getNext();
-	mHead->setPrevious(NULL);
+	
+	if(mHead != NULL) {				// Rob
+		mHead->setPrevious(NULL);
+	}
+	
 	delete temp;
+	
+	--mNodeCount;					// Rob
+	if(mNodeCount == 1) {			// Rob
+		mTail = mHead;
+	}
 }
 
+//
+// Grader comments 2014.05.14
+// Attempts to set next link even when there is no more list.
+// Doesn't manage node count.
+// Doesn't always manage head when necessary.
+// -15 points
+//
 void DLList::popBack()
 {
 	if (mTail == NULL)
@@ -125,10 +180,25 @@ void DLList::popBack()
 	if (mHead == mTail)
 		mHead = NULL;
 	mTail = mTail->getPrevious();
-	mTail->setNext(NULL);
+	
+	if(mTail != NULL) {				// Rob
+		mTail->setNext(NULL);
+	}
+	
 	delete temp;
+	
+	--mNodeCount;					// Rob
+	if(mNodeCount == 1) {			// Rob
+		mHead = mTail;
+	}
 }
 
+//
+// Grader comments 2014.05.14
+// Doesn't manage tail when necessary.
+// Doesn't insert new node properly.
+// -15 points.
+//
 bool DLList::removeFirst(int target)
 {
 	if (mHead == NULL)
@@ -154,6 +224,14 @@ bool DLList::removeFirst(int target)
 	else
 	{
 		trailer->setNext(spot->getNext());
+		
+		DLNode* newNext = spot->getNext();		// Rob
+		if(newNext == 0) {						// Rob
+			tail = trailer;
+		} else {
+			newNext->setPrevious(trailer);
+		}
+
 		delete spot;
 		--mNodeCount;
 		return true;
