@@ -1,6 +1,6 @@
 //
 // Grader comments 2014.05.13
-// -75 points total
+// -100 points total
 //
 
 /*
@@ -72,6 +72,11 @@ void DLList::pushBack(int contents)
     ++mNodeCount;
 }
 
+//
+// Grader comments 2014.05.15
+// Doesn't work
+// -25 points
+//
 void DLList::insert(int contents)
 {
 	if (mHead == NULL)
@@ -79,6 +84,8 @@ void DLList::insert(int contents)
 		pushFront(contents);
 		return;
 	}
+	
+	// This block will never occur because if mHead != null then mTail must be != null too
 	if (mTail == NULL)
 	{
 		if (contents < mHead->getContents())
@@ -89,6 +96,11 @@ void DLList::insert(int contents)
 		pushBack(contents);
 		return;
 	}
+	
+	// With a one-node list, you won't enter your while loop. So spot is always mHead and
+	// trailer is always null. You'll always insert the node before the head even if it
+	// should go after. Also, if the new node really is supposed to go before head, then
+	// you need to change mHead too. Also need to allow for inserting at the end of the list.
 	DLNode* spot = mHead;
 	DLNode* trailer = NULL;
 	while ((spot->getNext() != NULL) && (contents > spot->getContents()))
