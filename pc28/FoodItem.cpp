@@ -1,3 +1,8 @@
+//
+// Grader comments 2014.05.19
+// Fails two unit tests and produces extraneous output.
+// -45 points
+//
 #include "FoodItem.h"
 
 FoodItem::FoodItem(string name, unsigned int value, 
