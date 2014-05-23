@@ -89,6 +89,12 @@ void boxMenu()
 				break;
 			case 3:
 				systemClear();
+				//
+				// Grader comments 2014.04.11
+				// Removes zero-based prize but the view that it shows
+				// is one-based. Deducted 5 points. Otherwise,
+				// outstanding code.
+				//
 				cout << "Which prize would you like removed? ";
 				myBox.removePrize(getValidInput(INT_MAX));
 				pause();

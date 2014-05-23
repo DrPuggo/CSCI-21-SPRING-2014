@@ -1,3 +1,12 @@
+//
+// Grader comments 2014.05.14
+// + 50: naming conventions good
+// + 50: header documentation good
+// + 50: formatting good
+// +137: driver -- see comments below; look for "grader comments" and "Rob"
+// +150: DLNode good
+// +200: DLList -- see comments DLList.cpp
+// 
 /*
  * Programming Project 3
  * This project interprets a script used to test a doubly linked list.
@@ -18,6 +27,11 @@ using std::endl;
 using std::string;
 using std::fstream;
 
+//
+// Grader comments 2014.05.15
+// -  5: A & Z catch the wrong kind of exception from DLList.
+// -  8: P doesn't print the list, but the list address.
+//
 int main(int argc, char* argv[])
 {
 	fstream fin;
@@ -108,7 +122,8 @@ int main(int argc, char* argv[])
 						intFromScript = list->getFront();
 						cout << "VALUE " << intFromScript << " AT HEAD" << endl;
 					}
-					catch (string e)
+					//catch (string e)		// Rob
+					catch(char const* e)	// Rob
 					{
 						cout << e << endl;
 					}
@@ -124,7 +139,8 @@ int main(int argc, char* argv[])
 						intFromScript = list->getBack();
 						cout << "VALUE " << intFromScript << " AT TAIL" << endl;
 					}
-					catch (string e)
+					//catch (string e)		// Rob
+					catch(char const* e)	// Rob
 					{
 						cout << e << endl;
 					}
@@ -198,7 +214,8 @@ int main(int argc, char* argv[])
 				if (list == NULL)
 					cout << "MUST CREATE LIST INSTANCE" << endl;
 				else
-					cout << list << endl;
+					//cout << list << endl;	// Rob
+					cout << *list << endl;	// Rob
 				break;
 			case '#':
 			default:

@@ -90,6 +90,15 @@ int main ()
 
 void hello()
 {
+	//
+	// Grader comments 2014.02.10
+	//
+	// Be sure to run your code and look at the output of
+	// the unit tests before you turn it in. The unit tests
+	// decide whether you get points for the assignment.
+	// In this instance, your "W" should be lowercase; the
+	// uppercase causes the first unit test to fail. --Rob
+	//
     cout << "Hello World!";
 }
 

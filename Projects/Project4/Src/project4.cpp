@@ -1,3 +1,7 @@
+//
+// Grader comments 2014.05.22
+// -55 points total
+//
 /*
  * Programming Project 4
  * This driver tests the classes BSTree, BSTNode,
@@ -59,12 +63,22 @@ int main(int argc, char* argv[])
 		        cout << "TREE CLEARED" << endl;
 		        break;
 		    case 'D':
+			//
+			// Grader comments 2014.05.22
+			// Need to say "MUST CREATE TREE INSTANCE" if the
+			// tree doesn't exist.
+			// -5 points
+			//
     	        if (tree)
     	        {
     	            delete tree;
     	            tree = NULL;
+		            cout << "TREE DELETED" << endl;
     	        }
-	            cout << "TREE DELETED" << endl;
+				else	// Rob added to get unit test to run
+				{
+					cout << "MUST CREATE TREE INSTANCE" << endl;
+				}
 		        break;
 		    case 'I':
 		        if (!tree)
@@ -72,7 +86,14 @@ int main(int argc, char* argv[])
 		            cout << "MUST CREATE TREE INSTANCE" << endl;
 		            break;
 		        }
-		        wordFromScript = script.substr(2, (script.length() - 3));
+				//
+				// Grader comments 2014.05.22
+				// You're chopping off the last character of the
+				// word to be inserted.
+				// -10 points
+				//
+		        //wordFromScript = script.substr(2, (script.length() - 3));	// Rob
+				wordFromScript = script.substr(2, (script.length() - 2));	// Rob
 		      //  wordFromScript[wordFromScript.length() - 1] = ' ';
 		        if (tree->insert(wordFromScript) == true)
 		            cout << "WORD " << wordFromScript << " INSERTED" << endl;
@@ -98,7 +119,14 @@ int main(int argc, char* argv[])
 		            cout << "TREE EMPTY" << endl;
 		            break;
 		        }
-		        wordFromScript = script.substr(2, (script.length() - 3));
+				//
+				// Grader comments 2014.05.22
+				// You're chopping off the last character of the
+				// word to be inserted.
+				// -10 points
+				//
+		        //wordFromScript = script.substr(2, (script.length() - 3));	// Rob
+				wordFromScript = script.substr(2, (script.length() - 2));	// Rob
 		        if (tree->find(wordFromScript))
 		            cout << "FOUND " << wordFromScript << endl;
 		        else
@@ -115,7 +143,14 @@ int main(int argc, char* argv[])
 		            cout << "TREE EMPTY" << endl;
 		            break;
 		        }
-		        wordFromScript = script.substr(2, (script.length() - 3));
+				//
+				// Grader comments 2014.05.22
+				// You're chopping off the last character of the
+				// word to be inserted.
+				// -10 points
+				//
+		        //wordFromScript = script.substr(2, (script.length() - 3));	// Rob
+				wordFromScript = script.substr(2, (script.length() - 2));	// Rob
 		        if (tree->remove(wordFromScript))
 		            cout << "REMOVED " << wordFromScript << endl;
 		        else
@@ -132,7 +167,14 @@ int main(int argc, char* argv[])
 		            cout << "TREE EMPTY" << endl;
 		            break;
 		        }
-		        wordFromScript = script.substr(2, (script.length() - 3));
+				//
+				// Grader comments 2014.05.22
+				// You're chopping off the last character of the
+				// word to be inserted.
+				// -10 points
+				//
+		        //wordFromScript = script.substr(2, (script.length() - 3));	// Rob
+				wordFromScript = script.substr(2, (script.length() - 2));	// Rob
 		        word = NULL;
 		        word = tree->get(wordFromScript);
 		        if (word)
@@ -154,16 +196,42 @@ int main(int argc, char* argv[])
 		            cout << "MUST CREATE TREE INSTANCE" << endl;
 		            break;
 		        }
-		        tree->inOrder();
-		        break;
+				//
+				// Grader comments 2014.05.22
+				// Need to report empty tree if necessary
+				// -5 points
+				//
+		        else if (tree->getSize() == 0)
+		        {
+		            cout << "TREE EMPTY" << endl;
+		            break;
+		        }
+				else
+				{
+					tree->inOrder();
+			        break;
+				}
 		    case 'E':
 		        if (!tree)
 		        {
 		            cout << "MUST CREATE TREE INSTANCE" << endl;
 		            break;
 		        }
-		        tree->reverseOrder();
-		        break;
+				//
+				// Grader comments 2014.05.22
+				// Need to report empty tree if necessary
+				// -5 points
+				//
+		        else if (tree->getSize() == 0)
+		        {
+		            cout << "TREE EMPTY" << endl;
+		            break;
+		        }
+				else
+				{
+					tree->reverseOrder();
+		        	break;
+				}
 		    default: ;
 		}
 	}

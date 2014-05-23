@@ -1,3 +1,7 @@
+//
+// Grader comments 2015.05.22
+// -30 points total
+//
 /*
  * BSTree.h
  * A simple, templated binary search tree.
@@ -8,7 +12,7 @@
  */
 
 #pragma once
-
+#include <iostream>	// Added by Rob for unit test
 #include "BSTNode.h"
 using std::cout;
 using std::endl;
@@ -19,6 +23,31 @@ class BSTree
         BSTNode<T>* mRoot;
         unsigned int mSize;
     public:
+    	
+        //  Rob: added for testing
+		BSTNode<T>* getNode(T const& inContents) {
+			return getNode(inContents, getRoot());
+		}
+		
+		// Rob: added for testing
+		BSTNode<T>* getRoot() {
+			return mRoot;
+		}
+    	
+		// Rob added for testing
+		BSTNode<T>* getNode(T const& inContents, BSTNode<T>* inBaseOfBranch) {
+			if(inBaseOfBranch == 0) {
+				return 0;
+			} else {
+				if(inContents == inBaseOfBranch->getData()) {
+					return inBaseOfBranch;
+				} else if(inContents < inBaseOfBranch->getData()) {
+					return getNode(inContents, inBaseOfBranch->getLeftChild());
+				} else {
+					return getNode(inContents, inBaseOfBranch->getRightChild());
+				}
+			}
+		}
         /*
          * Initiallizes the tree's root to NULL and size to 0.
          */
@@ -248,12 +277,17 @@ class BSTree
         /*
          * Prints the contents of the tree in descending order.
          */
+		//
+		// Grader comments 2014.05.22
+		// This should call reverseOrder recursively, not inOrder()
+		// -30 points
+		//
         void reverseOrder(BSTNode<T>* root)
         {
             if (root == NULL)
                 return;
-            inOrder(root->getRightChild());
+            reverseOrder(root->getRightChild());
             cout << root->getData() << endl;
-            inOrder(root->getLeftChild());
+            reverseOrder(root->getLeftChild());
         }
 };
